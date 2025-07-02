@@ -18,11 +18,11 @@ RUN apk add --no-cache \
 # Set timezone (optional)
 ENV TZ=UTC
 
-# Return to non-root user (n8n expects this)
+# Switch back to the non-root user
 USER node
 
-# Expose port expected by Render
+# Expose port for Render
 EXPOSE 3000
 
-# Start n8n using the full path
-CMD ["node", "/usr/local/lib/node_modules/n8n/bin/n8n"]
+#Correct CMD for Alpine-based n8n containers
+CMD ["tini", "--", "n8n"]
