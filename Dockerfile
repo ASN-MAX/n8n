@@ -6,7 +6,7 @@ WORKDIR /data
 # Switch to root to install packages
 USER root
 
-# Install necessary packages using Alpine's apk
+# Install dependencies using Alpine's apk
 RUN apk add --no-cache \
     ffmpeg \
     curl \
@@ -18,11 +18,11 @@ RUN apk add --no-cache \
 # Set timezone (optional)
 ENV TZ=UTC
 
-# Revert back to default user for safety
+# Return to non-root user (n8n expects this)
 USER node
 
 # Expose port expected by Render
 EXPOSE 3000
 
-# Start n8n
-CMD ["n8n"]
+# Start n8n using the full path
+CMD ["node", "/usr/local/lib/node_modules/n8n/bin/n8n"]
