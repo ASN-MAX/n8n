@@ -18,4 +18,5 @@ USER node
 
 EXPOSE 3000
 
-CMD ["n8n"]
+
+CMD ["node", "/usr/local/lib/node_modules/n8n/bin/n8n"]
